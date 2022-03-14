@@ -122,9 +122,6 @@ import { db } from '~/plugins/firebase'
 const blogsCollectionRef = collection(db, 'blogs')
 const q = query(blogsCollectionRef, orderBy('created_at', 'desc'))
 const commentsCollectionRef = collection(db, 'comments')
-// const commentRef = doc(db, 'comments', this.$route.id)
-// const blogRef = doc(db, 'blogs', this.id)
-// const qu = query(commentsCollectionRef, where('blogRef', '==', commentRef))
 
 export default {
   name: 'IndexPage',
@@ -142,7 +139,7 @@ export default {
       blogs: [],
       displayBlogLists: [],
       page: 1,
-      pageSize: 3,
+      pageSize: 2,
       search: '',
       show: false,
       comments: []
@@ -187,7 +184,7 @@ export default {
 
 <style scoped>
 .text-width {
-  max-width: 620px;
+  max-width: 300px;
 }
 .text-comment {
   max-width: 300px;

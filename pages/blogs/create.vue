@@ -30,7 +30,7 @@ const usersCollectionRef = collection(db, 'blogs')
 
 export default {
   name: 'BlogCreatePage',
-  // middleware: 'authenticated',
+  middleware: 'authenticated',
   data () {
     return {
       title: '',

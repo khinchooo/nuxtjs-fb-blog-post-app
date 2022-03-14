@@ -22,7 +22,7 @@
           </template>
           <span>Home</span>
         </v-tooltip>
-        <v-toolbar-title v-if="user" class="my-5 body-1 primary--text blue-grey lighten-3 rounded-lg">
+        <v-toolbar-title v-if="user" class="my-4 body-1 primary--text">
           {{ user.displayName || user.uid }}
         </v-toolbar-title>
         <v-tooltip bottom>
