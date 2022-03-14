@@ -32,87 +32,80 @@
         </v-fab-transition>
       </v-col>
     </v-row>
-    <v-card
-      max-width="700"
-      class="mx-auto"
-    >
-      <v-container>
-        <v-row dense>
-          <v-col cols="12">
-            <v-card
-              v-for="blog in displayBlogLists"
-              :key="blog.id"
-              color="lime lighten-5"
-              class="my-1"
-            >
-              <v-card-title class="text-h6">
-                {{ blog.title }}
-                <v-spacer />
-                Blogger: {{ blog.user_name }}
-              </v-card-title>
+    <v-row dense>
+      <v-col cols="12">
+        <v-card
+          v-for="blog in displayBlogLists"
+          :key="blog.id"
+          color="lime lighten-5"
+          class="my-1"
+        >
+          <v-card-title class="text-h6">
+            {{ blog.title }}
+            <v-spacer />
+            Blogger: {{ blog.user_name }}
+          </v-card-title>
 
-              <v-card-subtitle v-if="blog.created_at" class="font-weight-medium subtitle-1">
-                {{ $dateFns.format(blog.created_at.toDate(), 'yyyy-MM-dd HH:mm') }}
-              </v-card-subtitle>
-              <v-card-text>
-                <div v-if="blog.content" class="d-inline-block text-truncate text-width">
-                  {{ blog.content }}
-                </div>
-              </v-card-text>
-              <v-card-actions class="py-0">
-                <v-spacer />
-                <v-btn
-                  icon
-                  @click="show = !show"
-                >
-                  <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
-                </v-btn>
-              </v-card-actions>
-              <v-card v-show="show">
-                <v-card-title>Comments</v-card-title>
-                <ul v-for="com in comments" :key="com.id">
-                  <div v-if="blog.id === com.blog_id.id">
-                    <li>
-                      {{ com.comment }}
-                      <v-btn icon @click="commentDelete(com.id)">
-                        <v-icon small color="red">
-                          mdi-delete
-                        </v-icon>
-                      </v-btn>
-                    </li>
-                  </div>
-                </ul>
-              </v-card>
-              <v-divider />
-              <v-card-actions>
-                <!-- <v-btn icon :to="{ path: `blogs/${blog.id}` }"> -->
-                <v-btn :to="{ name: 'comment', query: { id: blog.id }}">
-                  <v-icon small color="blue darken-2">
-                    mdi-message-text
-                  </v-icon>
-                </v-btn>
-                <v-btn icon :to="{ path: `blogs/${blog.id}/edit` }">
-                  <v-icon small color="green lighten-2">
-                    mdi-book-edit
-                  </v-icon>
-                </v-btn>
-                <v-spacer />
-                <v-btn icon @click="remove(blog.id)">
-                  <v-icon small color="red">
-                    mdi-delete
-                  </v-icon>
-                </v-btn>
-              </v-card-actions>
-            </v-card>
-            <v-pagination
-              v-model="page"
-              :length="length"
-              @input="pageChange"
-            />
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-card>
+          <v-card-subtitle v-if="blog.created_at" class="font-weight-medium subtitle-1">
+            {{ $dateFns.format(blog.created_at.toDate(), 'yyyy-MM-dd HH:mm') }}
+          </v-card-subtitle>
+          <v-card-text>
+            <div v-if="blog.content" class="d-inline-block text-truncate text-width">
+              {{ blog.content }}
+            </div>
+          </v-card-text>
+          <v-card-actions class="py-0">
+            <v-spacer />
+            <v-btn
+              icon
+              @click="show = !show"
+            >
+              <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+            </v-btn>
+          </v-card-actions>
+          <v-card v-show="show">
+            <v-card-title>Comments</v-card-title>
+            <ul v-for="com in comments" :key="com.id">
+              <div v-if="blog.id === com.blog_id.id">
+                <li>
+                  <span class="text-truncate text-width">{{ com.comment }}</span>
+                  <v-btn icon @click="commentDelete(com.id)">
+                    <v-icon small color="red">
+                      mdi-delete
+                    </v-icon>
+                  </v-btn>
+                </li>
+              </div>
+            </ul>
+          </v-card>
+          <v-divider />
+          <v-card-actions v-show="show">
+            <!-- <v-btn icon :to="{ path: `blogs/${blog.id}` }"> -->
+            <v-btn :to="{ name: 'comment', query: { id: blog.id }}">
+              <v-icon small color="blue darken-2">
+                mdi-message-text
+              </v-icon>
+            </v-btn>
+            <v-btn icon :to="{ path: `blogs/${blog.id}/edit` }">
+              <v-icon small color="green lighten-2">
+                mdi-book-edit
+              </v-icon>
+            </v-btn>
+            <v-spacer />
+            <v-btn icon @click="remove(blog.id)">
+              <v-icon small color="red">
+                mdi-delete
+              </v-icon>
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+        <v-pagination
+          v-model="page"
+          :length="length"
+          @input="pageChange"
+        />
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
@@ -184,9 +177,6 @@ export default {
 
 <style scoped>
 .text-width {
-  max-width: 300px;
-}
-.text-comment {
   max-width: 300px;
 }
 /*.truncate {

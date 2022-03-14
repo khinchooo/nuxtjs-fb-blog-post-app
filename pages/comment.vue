@@ -8,7 +8,7 @@
       </v-btn>
     </div>
     <div v-else>
-      <p>先ずログインしてください</p>
+      <p>ログインしてください</p>
       <nuxt-link to="/login">
         Login
       </nuxt-link>
